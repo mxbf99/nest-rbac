@@ -45,12 +45,14 @@ watch(dialogVisible, (val) => {
   }
 })
 
-const formData = reactive(
-  computed({
-    get: () => ({ status: 1, menus: [], ...props.data }),
-    set: (val) => emit('update:data', val)
-  })
-)
+const data = computed({
+  get: () => ({ status: 1, menus: [], ...props.data }),
+  set: (val) => emit('update:data', val)
+})
+const formData = ref<any>(null)
+watch(data, (val) => {
+  formData.value = val
+})
 
 // 树
 const tree = ref<any>(null)

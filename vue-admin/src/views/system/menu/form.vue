@@ -31,22 +31,25 @@ watch(
     }
   }
 )
-const formData = reactive(
-  computed({
-    get: () => ({
-      type: 1,
-      link: 0,
-      sort: 0,
-      hidden: 0,
-      cache: 1,
-      status: 1,
-      ...props.data,
-      parent_id: props.data?.parent_id ?? 0,
-      icon: props.data?.icon ?? ''
-    }),
-    set: (val) => emit('update:data', val)
-  })
-)
+const data = computed({
+  get: () => ({
+    type: 1,
+    link: 0,
+    sort: 0,
+    hidden: 0,
+    cache: 1,
+    status: 1,
+    ...props.data,
+    parent_id: props.data?.parent_id ?? 0,
+    icon: props.data?.icon ?? ''
+  }),
+  set: (val) => emit('update:data', val)
+})
+const formData = ref<any>(null)
+watch(data, (val) => {
+  formData.value = val
+})
+
 const rules = reactive({
   name: [
     {

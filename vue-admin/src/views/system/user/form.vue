@@ -66,18 +66,20 @@ watch(dialogVisible, (val) => {
   }
 })
 
-const formData = reactive(
-  computed({
-    get: () => ({
-      status: 1,
-      ...(props.data.roles && {
-        role_ids: props.data.roles.map((item: any) => item.id)
-      }),
-      ...props.data
+const data = computed({
+  get: () => ({
+    status: 1,
+    ...(props.data.roles && {
+      role_ids: props.data.roles.map((item: any) => item.id)
     }),
-    set: (val) => emit('update:data', val)
-  })
-)
+    ...props.data
+  }),
+  set: (val) => emit('update:data', val)
+})
+const formData = ref<any>(null)
+watch(data, (val) => {
+  formData.value = val
+})
 
 const optionStore = useOptionStore()
 const roles = optionStore.roles

@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import type { UserMenu } from '@/utils/menu-route'
+import type { IUserMenu } from '@/utils/menu-route'
 import type { PropType } from 'vue'
 import { useRouter } from 'vue-router'
 
 const props = defineProps({
   menuList: {
-    type: Array as PropType<UserMenu[]>,
+    type: Array as PropType<IUserMenu[]>,
     default: () => []
   }
 })
 
 const router = useRouter()
-const handleClick = (item: UserMenu) => {
+const handleClick = (item: IUserMenu) => {
   const { url, link } = item
   if (link) return window.open(url, '_blank')
   router.push(url)

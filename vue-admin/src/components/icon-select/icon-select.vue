@@ -9,12 +9,10 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: string): void
 }>()
 
-const value = reactive(
-  computed({
-    get: () => props.modelValue,
-    set: (val) => emit('update:modelValue', val)
-  })
-)
+const value = computed({
+  get: () => props.modelValue,
+  set: (val) => emit('update:modelValue', val)
+})
 </script>
 <template>
   <el-select v-model="value" placeholder="请选择图标" filterable clearable>
