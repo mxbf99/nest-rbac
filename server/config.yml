@@ -1,0 +1,38 @@
+application:
+  name: 'Cms'
+  port: 3000
+
+logger:
+  #是否启用日志
+  enable: true
+  #打印等级
+  level: 'info'
+  #是否打印时间戳
+  timestamp: true
+
+  file:
+    #是否启用文件日志
+    enable: true
+
+mysql:
+  host: '127.0.0.1'
+  port: 3307
+  username: 'root'
+  password: '123456'
+  database: 'dev'
+  #同步数据库
+  synchronize: false
+
+redis:
+  host: '127.0.0.1'
+  port: 6379
+  password: ''
+
+jwt:
+  secret: 'JDkdKSK11jdash143'
+  expires: 648000
+
+swagger:
+  enable: true
+  title: '牛逼哄哄接口文档'
+  description: '牛逼哄哄接口文档描述'
