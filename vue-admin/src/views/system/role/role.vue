@@ -99,7 +99,7 @@ const handleAdd = () => {
   formVisible.value = true
 }
 const handleEdit = (row: any) => {
-  formData.value = row
+  formData.value = { ...row }
   formType.value = 'edit'
   formTitle.value = '编辑角色'
   formVisible.value = true

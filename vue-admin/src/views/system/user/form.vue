@@ -2,7 +2,7 @@
 import { CreateUser, UpdateUser } from '@/api/system/user'
 import useOptionStore from '@/stores/option'
 import { ElMessage } from 'element-plus'
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, nextTick, reactive, ref, watch } from 'vue'
 
 const form = ref<any>(null)
 const rules = reactive({
@@ -62,9 +62,12 @@ const dialogVisible = computed({
 })
 const formData = ref<any>(null)
 watch(dialogVisible, (val) => {
-  if (!val) {
-    form.value.resetFields()
-    formData.value = props.data
+  if (val) {
+    form.value?.resetFields()
+    formData.value = {
+      ...props.data,
+      role_ids: props.data?.roles.map((item: any) => item.id)
+    }
   }
 })
 

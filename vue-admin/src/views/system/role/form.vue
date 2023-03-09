@@ -41,8 +41,8 @@ const dialogVisible = computed({
 })
 const formData = ref<any>(null)
 watch(dialogVisible, (val) => {
-  if (!val) {
-    form.value.resetFields()
+  if (val) {
+    form.value?.resetFields()
     formData.value = props.data
   }
 })
@@ -58,9 +58,10 @@ const menus = computed(() => optionStore.menus)
 watch(dialogVisible, (val) => {
   if (val) {
     nextTick(() => {
-      formData.value.menus.forEach((item: any) => {
-        tree.value.setChecked(item.id, true, false)
-      })
+      formData.value.menus?.length > 0 &&
+        formData.value.menus.forEach((item: any) => {
+          tree.value.setChecked(item.id, true, false)
+        })
     })
   } else {
     tree.value.setCheckedKeys([])
