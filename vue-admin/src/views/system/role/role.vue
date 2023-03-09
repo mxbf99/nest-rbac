@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import Search from '@/components/search/search.vue'
 import ZTable from '@/components/table/table.vue'
 import roleForm from './form.vue'
 import { DeleteRole, RoleList } from '@/api/system/role'
-import useOptionStore from '@/stores/option'
 
 const searchItems = reactive([
   {

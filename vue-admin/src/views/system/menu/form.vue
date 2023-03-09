@@ -66,11 +66,15 @@ const menus = [
 ]
 
 const submit = () => {
-  if (props.type === 'add') {
-    add()
-  } else if (props.type === 'edit') {
-    update()
-  }
+  form.value?.validate((valid: boolean) => {
+    if (valid) {
+      if (props.type === 'add') {
+        add()
+      } else {
+        update()
+      }
+    }
+  })
 }
 
 const add = () => {

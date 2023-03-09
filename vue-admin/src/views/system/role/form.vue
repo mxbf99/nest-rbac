@@ -96,11 +96,15 @@ const handleSelectMenu = () => {
   ]
 }
 const submit = () => {
-  if (props.type === 'add') {
-    add()
-  } else if (props.type === 'edit') {
-    update()
-  }
+  form.value.validate((valid: boolean) => {
+    if (valid) {
+      if (props.type === 'add') {
+        add()
+      } else if (props.type === 'update') {
+        update()
+      }
+    }
+  })
 }
 
 const add = () => {
