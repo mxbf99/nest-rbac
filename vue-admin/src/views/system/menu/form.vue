@@ -41,7 +41,8 @@ const data = computed({
     status: 1,
     ...props.data,
     parent_id: props.data?.parent_id ?? 0,
-    icon: props.data?.icon ?? ''
+    icon: props.data?.icon ?? '',
+    children: null
   }),
   set: (val) => emit('update:data', val)
 })
