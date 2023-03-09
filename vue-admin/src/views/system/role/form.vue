@@ -39,19 +39,12 @@ const dialogVisible = computed({
   get: () => props.visible,
   set: (val) => emit('update:visible', val)
 })
+const formData = ref<any>(null)
 watch(dialogVisible, (val) => {
   if (!val) {
     form.value.resetFields()
+    formData.value = props.data
   }
-})
-
-const data = computed({
-  get: () => ({ status: 1, menus: [], ...props.data }),
-  set: (val) => emit('update:data', val)
-})
-const formData = ref<any>(null)
-watch(data, (val) => {
-  formData.value = val
 })
 
 // 树

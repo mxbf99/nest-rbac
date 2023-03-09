@@ -20,20 +20,20 @@ const rules = reactive({
       trigger: 'blur'
     }
   ],
-  phone: [
-    {
-      required: true,
-      message: '请输入手机号',
-      trigger: 'blur'
-    }
-  ],
-  email: [
-    {
-      required: true,
-      message: '请输入邮箱',
-      trigger: 'blur'
-    }
-  ],
+  // phone: [
+  //   {
+  //     required: true,
+  //     message: '请输入手机号',
+  //     trigger: 'blur'
+  //   }
+  // ],
+  // email: [
+  //   {
+  //     required: true,
+  //     message: '请输入邮箱',
+  //     trigger: 'blur'
+  //   }
+  // ],
   role_ids: [
     {
       required: true,
@@ -60,25 +60,12 @@ const dialogVisible = computed({
   get: () => props.visible,
   set: (val) => emit('update:visible', val)
 })
+const formData = ref<any>(null)
 watch(dialogVisible, (val) => {
   if (!val) {
     form.value.resetFields()
+    formData.value = props.data
   }
-})
-
-const data = computed({
-  get: () => ({
-    status: 1,
-    ...(props.data.roles && {
-      role_ids: props.data.roles.map((item: any) => item.id)
-    }),
-    ...props.data
-  }),
-  set: (val) => emit('update:data', val)
-})
-const formData = ref<any>(null)
-watch(data, (val) => {
-  formData.value = val
 })
 
 const optionStore = useOptionStore()

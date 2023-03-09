@@ -6,6 +6,17 @@ import { computed, reactive, ref, watch } from 'vue'
 import IconSelect from '@/components/icon-select/icon-select.vue'
 
 const form = ref<any>(null)
+const rules = reactive({
+  name: [
+    {
+      required: true,
+      message: '请输入菜单名称',
+      trigger: 'blur'
+    }
+  ],
+  path: []
+})
+
 const props = defineProps<{
   title?: string
   visible: boolean
@@ -23,44 +34,27 @@ const dialogVisible = computed({
   get: () => props.visible,
   set: (val) => emit('update:visible', val)
 })
+const formData = ref<any>({})
 watch(
   () => props.visible,
   (val) => {
     if (val) {
       form.value?.resetFields()
+      formData.value = {
+        type: 1,
+        link: 0,
+        sort: 0,
+        hidden: 0,
+        cache: 1,
+        status: 1,
+        ...props.data,
+        parent_id: props.data?.parent_id ?? 0,
+        icon: props.data?.icon ?? '',
+        children: null
+      }
     }
   }
 )
-const data = computed({
-  get: () => ({
-    type: 1,
-    link: 0,
-    sort: 0,
-    hidden: 0,
-    cache: 1,
-    status: 1,
-    ...props.data,
-    parent_id: props.data?.parent_id ?? 0,
-    icon: props.data?.icon ?? '',
-    children: null
-  }),
-  set: (val) => emit('update:data', val)
-})
-const formData = ref<any>(null)
-watch(data, (val) => {
-  formData.value = val
-})
-
-const rules = reactive({
-  name: [
-    {
-      required: true,
-      message: '请输入菜单名称',
-      trigger: 'blur'
-    }
-  ],
-  path: []
-})
 
 const optionStore = useOptionStore()
 const menus = [
