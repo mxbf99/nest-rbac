@@ -33,8 +33,7 @@ export class MenuController {
   @CheckPermission('system:menu:create')
   @Post()
   createMenu(@Body() menu: CreateMenuDto) {
-    this.menuService.create(menu);
-    return '添加成功';
+    return this.menuService.create(menu);
   }
 
   @ApiOperation({ summary: '修改菜单' })
