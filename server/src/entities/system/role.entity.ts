@@ -3,8 +3,10 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -48,6 +50,10 @@ export class Role {
 
   @CreateDateColumn()
   created_at: Date;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'created_by' })
+  created_by: User;
 
   @UpdateDateColumn()
   updated_at: Date;

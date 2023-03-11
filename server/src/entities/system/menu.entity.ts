@@ -6,11 +6,7 @@ import {
   JoinColumn,
   ManyToMany,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
-  Tree,
-  TreeChildren,
-  TreeParent,
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from './user.entity';
